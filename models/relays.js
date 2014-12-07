@@ -16,13 +16,14 @@ exports.getAll = function() {
 
 exports.getById = function(id) {
   console.log("relays getById:" + id);
-  var path = properties.get(id + ".closed");
+  var path = properties.get(id + ".path");
   console.log("path:" + path);
   var isClosed = relay.getByPath(path);
   console.log("isClosed?" + isClosed);
   return {
         "id" : id,
         "name" : properties.get(id + ".name"),
-        "closed" : isClosed
+        "path" : path,
+        "value" : isClosed
   };
 };
