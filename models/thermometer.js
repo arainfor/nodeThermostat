@@ -23,14 +23,14 @@ exports.getByDeviceId = function(deviceId) {
     var pos = deviceId.indexOf("/");
     if (pos > 0) {
         // The temperature is a raw double value in a file
-        fs.readFile(deviceId, {encoding: 'utf-8'}, function(err, data){
+        fs.readFile(deviceId, {encoding: 'utf-8'}, function(err, data) {
             if (!err) {
                 console.log("readFile: " + data);
                 return data;
             } else {
                 console.log(err);
             }
-        }
+        })
     }
 
 
