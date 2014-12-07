@@ -29,5 +29,11 @@ exports.getAll = function() {
 };
 
 exports.getById = function(id) {
-  return thermometer.getByDeviceId(temperatures[source]);
+  console.log("temperatures.getById:" + id + " device:" + properties.get(id+ ".source"));
+  return {
+    'id' : id,
+    'name' : properties.get(id + ".name"),
+    'source' :  properties.get(id+ ".source"),
+    'centigrade' : thermometer.getByDeviceId(properties.get(id+ ".source"))
+  };
 };

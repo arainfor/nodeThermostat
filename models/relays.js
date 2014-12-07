@@ -1,15 +1,3 @@
-//var relays = [
-//  {
-//    "id": 0,
-//    "name": "state",
-//    "closed": "false"
-//  },
-//  {
-//    "id": 1,
-//    "name": "furnace",
-//    "closed": "false"
-//  }
-//];
 var relay = require('./relay');
 var relays = [];
 var PropertiesReader = require('properties-reader');
@@ -20,16 +8,21 @@ exports.getAll = function() {
   console.log("Count:" + count);
   var i = 0;
   while (i < count) {
-    relays[i] = {
-      "id" : i,
-      "name" : properties.get(i + ".name"),
-      "closed" : relay.getByPath(properties.get(i + ".closed"))
-    }
+    relays[i] = this.getById(i);
     i++;
   }
   return relays;
 };
 
 exports.getById = function(id) {
-  return relays[id];
+  console.log("relays getById:" + id);
+  var path = properties.get(id + ".closed");
+  console.log("path:" + path);
+  var isClosed = relay.getByPath(path);
+  console.log("isClosed?" + isClosed);
+  return {
+        "id" : id,
+        "name" : properties.get(id + ".name"),
+        "closed" : isClosed
+  };
 };

@@ -21,18 +21,12 @@ exports.init = function() {
 exports.getByDeviceId = function(deviceId) {
     console.log("Reading device: " + deviceId);
     var pos = deviceId.indexOf("/");
-    if (pos > 0) {
+    if (pos >= 0) {
         // The temperature is a raw double value in a file
-        fs.readFile(deviceId, {encoding: 'utf-8'}, function(err, data) {
-            if (!err) {
-                console.log("readFile: " + data);
-                return data;
-            } else {
-                console.log(err);
-            }
-        })
+        return fs.readFileSync(deviceId, {encoding: 'utf-8'}).trim();
     }
 
 
     return sensor.get(deviceId);
 };
+

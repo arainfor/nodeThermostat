@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "~4.4.5",
     "properties-reader": "0.0.8",
-    "ds18x20": "~0.1.1"
+    "ds18x20": "~0.1.1",
+    "body-parser": "~1.10.0"
   }
 }
