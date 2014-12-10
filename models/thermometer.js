@@ -10,7 +10,7 @@ exports.getByDeviceId = function(deviceId) {
         return sensor.get(deviceId);
     } else {
         // must be a file
-        return fs.readFileSync(deviceId, 'utf8');
+        return fs.readFileSync(deviceId, 'utf8').trim();
     }
 
 };
