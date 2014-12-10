@@ -1,3 +1,4 @@
+var sensor = require('ds18x20');
 var thermometer = require('./thermometer');
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('thermostat.properties');
@@ -10,13 +11,29 @@ When source is thermometer then data is read from a device.
 When source is user then data is provided by user input.
  */
 var temperatures = [];
+
+exports.init = function() {
+    var isLoaded = sensor.isDriverLoaded();
+
+    if (!isLoaded) {
+      try {
+          sensor.loadDriver();
+          console.log('driver is loaded');
+      } catch (err) {
+          console.log('something went wrong loading the driver:', err)
+      }
+    }
+}
+
 exports.getAll = function() {
   var count = properties.get("count");
   var i = 0;
 
   console.log("Count:" + count);
+  this.init();
 
   while (i < count) {
+
     temperatures[i] = {
       'id' : i,
       'name' : properties.get(i + ".name"),
@@ -30,6 +47,8 @@ exports.getAll = function() {
 
 exports.getById = function(id) {
   console.log("temperatures.getById:" + id + " device:" + properties.get(id+ ".source"));
+  this.init();
+
   return {
     'id' : id,
     'name' : properties.get(id + ".name"),
