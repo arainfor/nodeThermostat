@@ -7,7 +7,7 @@ var fs = require('fs');
 exports.getByDeviceId = function(deviceId) {
     console.log("Reading device: " + deviceId);
     if (deviceId.indexOf("/") < 0) {
-        return sensor.get(deviceId);
+        return cToF(sensor.get(deviceId));
     } else {
         // must be a file
         return fs.readFileSync(deviceId, 'utf8').trim();
@@ -15,3 +15,7 @@ exports.getByDeviceId = function(deviceId) {
 
 };
 
+
+var cToF = function(cel) {
+    return (((cell * 9) / 5) + 32;
+}
