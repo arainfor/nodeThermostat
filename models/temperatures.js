@@ -41,7 +41,7 @@ exports.getAll = function() {
       'centigrade' : thermometer.getByDeviceId('c', properties.get(id + ".source")),
       'fahrenheit' : thermometer.getByDeviceId('f', properties.get(id + ".source"))
     };
-    i++;
+    id++;
   }
   return temperatures;
 };
