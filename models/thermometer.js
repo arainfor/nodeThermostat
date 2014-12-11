@@ -25,10 +25,10 @@ exports.getByDeviceId = function(units, deviceId) {
 };
 
 
-var cToF = function(cel) {
+exports.cToF = function(cel) {
     return (((cel * 9) / 5) + 32);
 }
 
-var fToC = function(far) {
+exports.fToC = function(far) {
     return (((far - 32) * 5) / 9);
 }

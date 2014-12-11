@@ -34,12 +34,13 @@ exports.getAll = function() {
 
   while (id < count) {
 
+    var cValue = thermometer.getByDeviceId('c', properties.get(id + ".source"));
     temperatures[id] = {
       'id' : id,
       'name' : properties.get(id + ".name"),
       'source' : properties.get(id + ".source"),
-      'centigrade' : thermometer.getByDeviceId('c', properties.get(id + ".source")),
-      'fahrenheit' : thermometer.getByDeviceId('f', properties.get(id + ".source"))
+      'centigrade' : cValue,
+      'fahrenheit' : thermometer.cToF(cValue)
     };
     id++;
   }
@@ -50,11 +51,12 @@ exports.getById = function(id) {
   console.log("temperatures.getById:" + id + " device:" + properties.get(id+ ".source"));
   this.init();
 
+  var cValue = thermometer.getByDeviceId('c', properties.get(id + ".source"));
   return {
     'id' : id,
     'name' : properties.get(id + ".name"),
     'source' :  properties.get(id+ ".source"),
-    'centigrade' : thermometer.getByDeviceId('c', properties.get(id + ".source")),
-    'fahrenheit' : thermometer.getByDeviceId('f', properties.get(id + ".source"))
+    'centigrade' : cValue,
+    'fahrenheit' : thermometer.cToF(cValue)
   };
 };
