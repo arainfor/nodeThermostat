@@ -8,9 +8,9 @@ exports.getByDeviceId = function(units, deviceId) {
     console.log("Reading device: " + deviceId);
     if (deviceId.indexOf("/") < 0) {
         if (units === 'c') {
-          return cToF(sensor.get(deviceId));
-        } else {
           return sensor.get(deviceId);
+        } else {
+          return cToF(sensor.get(deviceId));
         }
     } else {
         // must be a file
