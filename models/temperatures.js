@@ -27,18 +27,19 @@ exports.init = function() {
 
 exports.getAll = function() {
   var count = properties.get("count");
-  var i = 0;
+  var id = 0;
 
   console.log("Count:" + count);
   this.init();
 
-  while (i < count) {
+  while (id < count) {
 
-    temperatures[i] = {
-      'id' : i,
-      'name' : properties.get(i + ".name"),
-      'source' : properties.get(i+ ".source"),
-      'centigrade' : thermometer.getByDeviceId(properties.get(i+ ".source"))
+    temperatures[id] = {
+      'id' : id,
+      'name' : properties.get(id + ".name"),
+      'source' : properties.get(id + ".source"),
+      'centigrade' : thermometer.getByDeviceId('c', properties.get(id + ".source")),
+      'fahrenheit' : thermometer.getByDeviceId('f', properties.get(id + ".source"))
     };
     i++;
   }
@@ -53,6 +54,7 @@ exports.getById = function(id) {
     'id' : id,
     'name' : properties.get(id + ".name"),
     'source' :  properties.get(id+ ".source"),
-    'centigrade' : thermometer.getByDeviceId(properties.get(id+ ".source"))
+    'centigrade' : thermometer.getByDeviceId('c', properties.get(id + ".source")),
+    'fahrenheit' : thermometer.getByDeviceId('f', properties.get(id + ".source"))
   };
 };
