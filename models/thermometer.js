@@ -26,7 +26,7 @@ exports.getByDeviceId = function(units, deviceId) {
 
 
 var cToF = function(cel) {
-    return (((cell * 9) / 5) + 32);
+    return (((cel * 9) / 5) + 32);
 }
 
 var fToC = function(far) {
