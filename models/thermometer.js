@@ -4,14 +4,31 @@ var fs = require('fs');
 /*
  * Get the Thermometer Object.
  */
-exports.getByDeviceId = function(deviceId) {
+exports.getByDeviceId = function(units, deviceId) {
     console.log("Reading device: " + deviceId);
     if (deviceId.indexOf("/") < 0) {
-        return sensor.get(deviceId);
+        if (units === 'c') {
+          return sensor.get(deviceId);
+        } else {
+          return this.cToF(sensor.get(deviceId));
+        }
     } else {
         // must be a file
-        return fs.readFileSync(deviceId, 'utf8').trim();
+        if (units === 'c') {
+          return this.fToC(fs.readFileSync(deviceId, 'utf8').trim());
+        } else {
+          return fs.readFileSync(deviceId, 'utf8').trim();
+
+        }
     }
 
 };
 
+
+exports.cToF = function(cel) {
+    return (((cel * 9) / 5) + 32);
+}
+
+exports.fToC = function(far) {
+    return (((far - 32) * 5) / 9);
+}
