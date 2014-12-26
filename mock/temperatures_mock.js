@@ -1,11 +1,10 @@
-//{"temperatures":[{"id":0,"name":"indoor","source":"28-0000065ce60f","centigrade":30.9},{"id":1,"name":"target","source":"/var/thermronstat/target/0","centigrade":"60.0"},{"id":2,"name":"outdoor","source":"28-0000065ce60f","centigrade":30.9},{"id":3,"name":"plenum","source":"28-0000065ce60f","centigrade":30.9}]}
+//{"temperatures":[{"id":0,"name":"indoor","source":"28-0000065ce60f","fahrenheit":30.9},{"id":1,"name":"target","source":"/var/thermronstat/target/0","fahrenheit":"60.0"},{"id":2,"name":"outdoor","source":"28-0000065ce60f","fahrenheit":30.9},{"id":3,"name":"plenum","source":"28-0000065ce60f","fahrenheit":30.9}]}
 var _ = require('underscore');
 
 var temperatures = [
-{"id":0,"name":"indoor","source":"28-0000065ce60f","centigrade":30.9},
-{"id":1,"name":"target","source":"/var/thermronstat/target/0","centigrade":"60.0"},
-{"id":2,"name":"outdoor","source":"28-0000065ce60f","centigrade":30.9},
-{"id":3,"name":"plenum","source":"28-0000065ce60f","centigrade":30.9}
+  { "id":0,"name":"indoor","source":"28-0000065ce60f","fahrenheit":30.9 },
+  { "id":1,"name":"outdoor","source":"28-0000065ce60f","fahrenheit":30.9 },
+  { "id":2,"name":"plenum","source":"28-0000065ce60f","fahrenheit":30.9 }
 ]
 
 exports.list = function (req, res) {

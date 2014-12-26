@@ -6,6 +6,7 @@ var fs = require('fs');
  */
 exports.getByDeviceId = function(units, deviceId) {
     console.log("Reading device: " + deviceId);
+    try {
     if (deviceId.indexOf("/") < 0) {
         if (units === 'c') {
           return sensor.get(deviceId);
@@ -20,6 +21,10 @@ exports.getByDeviceId = function(units, deviceId) {
           return fs.readFileSync(deviceId, 'utf8').trim();
 
         }
+    }
+    } catch (err) {
+        console.log("Error reading data:", err);
+        return (0.0);
     }
 
 };

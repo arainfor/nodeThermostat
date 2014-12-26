@@ -3,8 +3,8 @@ var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('thermostat.properties');
 
 exports.get = function() {
-    var path = properties.get("target.path");
-    console.log("target.get" + path);
+    var path = properties.get("status.path");
+    console.log("status.get" + path);
     var pos = path.indexOf("/");
     if (pos >= 0) {
         // The temperature is a raw double value in a file
@@ -14,8 +14,8 @@ exports.get = function() {
 }
 
 exports.set = function(value) {
-    var path = properties.get("target.path");
-    console.log("target.set value:" + value + " at " + path);
+    var path = properties.get("status.path");
+    console.log("status.set value:" + value + " at " + path);
     var pos = path.indexOf("/");
     if (pos >= 0) {
         // The temperature is a raw double value in a file
@@ -25,6 +25,6 @@ exports.set = function(value) {
 }
 
 exports.getById = function(id) {
-  console.log("target.getById:" + id);
+  console.log("status.getById:" + id);
   return this.get();
 };
